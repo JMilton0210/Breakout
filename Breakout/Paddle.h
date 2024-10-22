@@ -17,6 +17,10 @@ public:
     sf::FloatRect getBounds() const;
     void setWidth(float coeff, float duration);
 
+    void CollisionWithBall();
+    void UpdateCollisionResponse(float dt);
+    static float lerp(float a, float b, float t);
+
 private:
 
 
@@ -26,4 +30,9 @@ private:
     bool _isAlive;
     float _timeInNewSize = 0.0f;
     float _height;
+
+    bool _collisionFlag = false;
+    sf::Color _collisionColour = sf::Color::Red;
+    float _timerCurrent = 0;
+    float _timerLimit = 0.25f;
 };

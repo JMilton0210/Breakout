@@ -8,6 +8,8 @@ Paddle::Paddle(sf::RenderWindow* window)
     _sprite.setFillColor(sf::Color::Cyan);
     _sprite.setPosition((window->getSize().x - _width) / 2.0f, _height);
     _sprite.setSize(sf::Vector2f(_width, PADDLE_HEIGHT));
+    _sprite.setOutlineColor(sf::Color::Cyan);
+    _sprite.setOutlineThickness(0);
 }
 
 Paddle::~Paddle()
@@ -48,6 +50,7 @@ void Paddle::moveTo(float dt, float desiredX)
 
 void Paddle::update(float dt)
 {
+    UpdateCollisionResponse(dt);
     if (_timeInNewSize > 0)
     {
         _timeInNewSize -= dt;
@@ -77,4 +80,35 @@ void Paddle::setWidth(float coeff, float duration)
     _timeInNewSize = duration;
     float newX = _sprite.getPosition().x + (_width - PADDLE_WIDTH) / 2;
     _sprite.setPosition(newX, _sprite.getPosition().y);
+}
+
+void Paddle::CollisionWithBall()
+{
+    _collisionFlag = true;
+}
+
+void Paddle::UpdateCollisionResponse(float dt)
+{
+    if (_collisionFlag) {
+        _timerCurrent += dt;
+        if (_timerCurrent > _timerLimit) {
+            _timerCurrent -= _timerLimit;
+            _collisionFlag = false;
+        }
+        //Calculate Colour
+        float coeff = _timerCurrent / _timerLimit;
+        if (coeff > 1) coeff = 1;
+        float r = lerp(_collisionColour.r, sf::Color::Cyan.r, coeff);
+        float g = lerp(_collisionColour.g, sf::Color::Cyan.g, coeff);
+        float b = lerp(_collisionColour.b, sf::Color::Cyan.b, coeff);
+        _sprite.setFillColor(sf::Color(r,g,b));
+    }
+    else {
+        _sprite.setFillColor(sf::Color::Cyan);
+    }
+}
+
+float Paddle::lerp(float a, float b, float t)
+{
+    return (1.0f - t) * a + b * t;
 }

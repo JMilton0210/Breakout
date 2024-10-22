@@ -84,6 +84,7 @@ void Ball::update(float dt)
         // Adjust position to avoid getting stuck inside the paddle
         _sprite.setPosition(_sprite.getPosition().x, _gameManager->getPaddle()->getBounds().top - 2 * RADIUS);
         IncreaseSpeed();
+        _gameManager->getPaddle()->CollisionWithBall();
     }
 
     // collision with bricks
