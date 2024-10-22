@@ -37,3 +37,5 @@ fire ball (green)
 
 [30 Seconds] Fixed by Removing Circular Dependency
 [20 Minutes] Paddle Moves directly to Mouse Position without Movement Speed
+[20 Minutes] Ball Velocity Increases On Collision With the Paddle and Resets to Default on Life Lost
+[60 Minutes] Added Ball Trail VFX
