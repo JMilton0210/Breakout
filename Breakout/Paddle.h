@@ -33,6 +33,7 @@ private:
 
     bool _collisionFlag = false;
     sf::Color _collisionColour = sf::Color::Red;
+    sf::Vector2f _collisionScale = sf::Vector2f(1.f, -0.5f);
     float _timerCurrent = 0;
     float _timerLimit = 0.25f;
 };

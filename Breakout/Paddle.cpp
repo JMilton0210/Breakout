@@ -10,6 +10,7 @@ Paddle::Paddle(sf::RenderWindow* window)
     _sprite.setSize(sf::Vector2f(_width, PADDLE_HEIGHT));
     _sprite.setOutlineColor(sf::Color::Cyan);
     _sprite.setOutlineThickness(0);
+    _sprite.setScale(1, -1);
 }
 
 Paddle::~Paddle()
@@ -95,15 +96,22 @@ void Paddle::UpdateCollisionResponse(float dt)
             _timerCurrent -= _timerLimit;
             _collisionFlag = false;
         }
-        //Calculate Colour
         float coeff = _timerCurrent / _timerLimit;
         if (coeff > 1) coeff = 1;
+        
+        //Calculate Colour
         float r = lerp(_collisionColour.r, sf::Color::Cyan.r, coeff);
         float g = lerp(_collisionColour.g, sf::Color::Cyan.g, coeff);
         float b = lerp(_collisionColour.b, sf::Color::Cyan.b, coeff);
         _sprite.setFillColor(sf::Color(r,g,b));
+
+        //Calculate Scale
+        float x = lerp(_collisionScale.x, 1, coeff);
+        float y = lerp(_collisionScale.y, -1, coeff);
+        _sprite.setScale(sf::Vector2f(x, y));
     }
     else {
+        _sprite.setScale(sf::Vector2f(1, -1));
         _sprite.setFillColor(sf::Color::Cyan);
     }
 }
