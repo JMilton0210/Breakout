@@ -5,6 +5,8 @@ Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager)
     : _window(window), _velocity(velocity), _gameManager(gameManager),
     _timeWithPowerupEffect(0.f), _isFireBall(false), _isAlive(true), _direction({1,1})
 {
+    _velocityInitial = VELOCITY;
+    _velocityCumulative = VELOCITY;
     _sprite.setRadius(RADIUS);
     _sprite.setFillColor(sf::Color::Cyan);
     _sprite.setPosition(0, 300);
@@ -23,8 +25,8 @@ void Ball::update(float dt)
     }
     else
     {
-        if (_velocity != VELOCITY)
-            _velocity = VELOCITY;   // reset speed.
+        if (_velocity != _velocityCumulative)
+            _velocity = _velocityCumulative;   // reset speed.
         else
         {
             setFireBall(0);    // disable fireball
@@ -38,6 +40,7 @@ void Ball::update(float dt)
         // Flickering effect
         int flicker = rand() % 50 + 205; // Random value between 205 and 255
         _sprite.setFillColor(sf::Color(flicker, flicker / 2, 0)); // Orange flickering color
+        _velocity = _velocityCumulative * 10;
     }
 
     // Update position with a subtle floating-point error
@@ -65,6 +68,9 @@ void Ball::update(float dt)
         _sprite.setPosition(0, 300);
         _direction = { 1, 1 };
         _gameManager->loseLife();
+        _velocityCumulative = _velocityInitial; 
+        _velocity = _velocityInitial;
+        
     }
 
     // collision with paddle
@@ -77,6 +83,7 @@ void Ball::update(float dt)
 
         // Adjust position to avoid getting stuck inside the paddle
         _sprite.setPosition(_sprite.getPosition().x, _gameManager->getPaddle()->getBounds().top - 2 * RADIUS);
+        IncreaseSpeed();
     }
 
     // collision with bricks
@@ -99,7 +106,7 @@ void Ball::render()
 
 void Ball::setVelocity(float coeff, float duration)
 {
-    _velocity = coeff * VELOCITY;
+    _velocity = coeff * _velocityCumulative;
     _timeWithPowerupEffect = duration;
 }
 
@@ -113,4 +120,10 @@ void Ball::setFireBall(float duration)
     }
     _isFireBall = false;
     _timeWithPowerupEffect = 0.f;    
+}
+
+void Ball::IncreaseSpeed()
+{
+    _velocityCumulative += (_velocityInitial * 0.1f );
+    _velocity = _velocityCumulative;
 }

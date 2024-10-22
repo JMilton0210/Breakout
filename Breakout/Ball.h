@@ -16,10 +16,13 @@ public:
     void setFireBall(float duration);
 
 private:
+    void IncreaseSpeed();
     sf::CircleShape _sprite;
     sf::Vector2f _direction;
     sf::RenderWindow* _window;
     float _velocity;
+    float _velocityInitial;
+    float _velocityCumulative;
     bool _isAlive;
     bool _isFireBall;
     float _timeWithPowerupEffect;
