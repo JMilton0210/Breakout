@@ -19,6 +19,7 @@ fire ball (green)
 
 * Fix the compiler issues in the code
 
+
 ## Suggested tasks
 
 * Implement mouse input for pad
@@ -33,3 +34,6 @@ fire ball (green)
 
 # Time Details and Changelist
 <Add information to this section about the time you've taken for this task along with a professional changelist.>
+
+[30 Seconds] Fixed by Removing Circular Dependency
+[20 Minutes] Paddle Moves directly to Mouse Position without Movement Speed
