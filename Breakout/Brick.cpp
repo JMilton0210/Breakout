@@ -8,6 +8,11 @@ Brick::Brick(float x, float y, float width, float height)
     _shape.setFillColor(sf::Color::Red);
 }
 
+void Brick::move(sf::Vector2f vec)
+{
+    _shape.setPosition(_shape.getPosition() + vec);
+}
+
 void Brick::render(sf::RenderWindow& window)
 {
     if (!_isDestroyed) {
@@ -18,4 +23,9 @@ void Brick::render(sf::RenderWindow& window)
 sf::FloatRect Brick::getBounds() const
 {
     return _shape.getGlobalBounds();
+}
+
+bool Brick::GetDestroyed()
+{
+    return _isDestroyed;
 }
