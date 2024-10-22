@@ -35,11 +35,11 @@ fire ball (green)
 # Time Details and Changelist
 <Add information to this section about the time you've taken for this task along with a professional changelist.>
 
-[30 Seconds] Bug Fix:		Removing Circular Dependency
-[20 Minutes] Mouse Movement: 	Paddle Moves directly to Mouse Position without Movement Speed
-[60 Minutes] Ball Trail VFX:	Sprites are spawned at regular at the balls position which decrease in size and then despawn
-[30 Minutes] Powerup Bar: 	Two sprites make up a bar that decreases as a powerup timer decreases
-[30 Minutes] Brick Movement: 	Bricks are moved from left to right based on a timer handled in the Brick Manager
-[20 Minutes] Ball Velocity: 	Ball Velocity Increases On Collision With the Paddle and Resets to Default when a Life is Lost
-[20 Minutes] Paddle Collision:	Paddle switches to red and lerps back to the default cyan colour over time
-[10 Minutes] Paddle Collision:	Paddle height scales to half and morphs back to full over time
+*[30 Seconds] Bug Fix:		Removing Circular Dependency
+*[20 Minutes] Mouse Movement: 	Paddle Moves directly to Mouse Position without Movement Speed
+*[60 Minutes] Ball Trail VFX:	Sprites are spawned at regular at the balls position which decrease in size and then despawn
+*[30 Minutes] Powerup Bar: 	Two sprites make up a bar that decreases as a powerup timer decreases
+*[30 Minutes] Brick Movement: 	Bricks are moved from left to right based on a timer handled in the Brick Manager
+*[20 Minutes] Ball Velocity: 	Ball Velocity Increases On Collision With the Paddle and Resets to Default when a Life is Lost
+*[20 Minutes] Paddle Collision:	Paddle switches to red and lerps back to the default cyan colour over time
+*[10 Minutes] Paddle Collision:	Paddle height scales to half and morphs back to full over time
