@@ -40,3 +40,5 @@ fire ball (green)
 [20 Minutes] Ball Velocity Increases On Collision With the Paddle and Resets to Default on Life Lost
 [60 Minutes] Added Ball Trail VFX
 [30 Minutes] Added Brick Left to Right Movement
+[30 Minutes] Added Powerup Bar
+

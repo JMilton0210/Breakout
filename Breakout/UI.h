@@ -13,7 +13,7 @@ public:
 	UI(sf::RenderWindow* window, int lives, GameManager* gameManager);
 	~UI();
 
-	void updatePowerupText(std::pair<POWERUPS, float>);
+	void updatePowerup(std::pair<POWERUPS, float>);
 	void lifeLost(int lives);
 	void render();
 
@@ -28,5 +28,10 @@ private:
 
 	static constexpr float LIFE_RADIUS = 15.0f;
 	static constexpr float LIFE_PADDING = 20.0f;
+
+	bool _barActive = false;
+	sf::RectangleShape _bar;
+	sf::RectangleShape _barBack;
+	
 };
 
