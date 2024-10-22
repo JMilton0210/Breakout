@@ -42,3 +42,4 @@ fire ball (green)
 [30 Minutes] Brick Movement: 	Bricks are moved from left to right based on a timer handled in the Brick Manager
 [20 Minutes] Ball Velocity: 	Ball Velocity Increases On Collision With the Paddle and Resets to Default when a Life is Lost
 [20 Minutes] Paddle Collision:	Paddle switches to red and lerps back to the default cyan colour over time
+[10 Minutes] Paddle Collision:	Paddle height scales to half and morphs back to full over time
