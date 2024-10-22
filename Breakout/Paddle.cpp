@@ -4,8 +4,9 @@
 Paddle::Paddle(sf::RenderWindow* window)
     : _window(window), _width(PADDLE_WIDTH), _timeInNewSize(0.0f), _isAlive(true)
 {
+    _height = window->getSize().y - 50.0f;
     _sprite.setFillColor(sf::Color::Cyan);
-    _sprite.setPosition((window->getSize().x - _width) / 2.0f, window->getSize().y - 50.0f);
+    _sprite.setPosition((window->getSize().x - _width) / 2.0f, _height);
     _sprite.setSize(sf::Vector2f(_width, PADDLE_HEIGHT));
 }
 
@@ -17,7 +18,7 @@ void Paddle::moveLeft(float dt)
 {
     float position = _sprite.getPosition().x;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && position > 0)
+    if (position > 0)
     {
         _sprite.move(sf::Vector2f(-dt * PADDLE_SPEED, 0));
     }
@@ -27,10 +28,22 @@ void Paddle::moveRight(float dt)
 {
     float position = _sprite.getPosition().x;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && position < _window->getSize().x - _width)
+    if (position < _window->getSize().x - _width)
     {
         _sprite.move(sf::Vector2f(dt * PADDLE_SPEED, 0));
     }
+}
+
+void Paddle::moveTo(float dt, float desiredX)
+{
+    // Offset Desired Position for sprite size
+    desiredX -= 550;   
+    _sprite.setPosition(sf::Vector2f(desiredX, _height));
+    
+    // Alternate Control Scheme (Thats Feels Worse)
+    //float position = _sprite.getPosition().x;
+    //if (position > desiredX) _sprite.move(sf::Vector2f(-dt * PADDLE_SPEED, 0));
+    //if (position < desiredX) _sprite.move(sf::Vector2f(dt * PADDLE_SPEED, 0));
 }
 
 void Paddle::update(float dt)

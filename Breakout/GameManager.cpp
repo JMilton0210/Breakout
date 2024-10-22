@@ -77,9 +77,14 @@ void GameManager::update(float dt)
         _timeLastPowerupSpawned = _time;
     }
 
-    // move paddle
+    // Keyboard Paddle Movement
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) _paddle->moveRight(dt);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) _paddle->moveLeft(dt);
+    // Mouse Paddle Movement
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) _paddle->moveTo(dt, _window->mapPixelToCoords(sf::Mouse::getPosition()).x);
+            
+        
+    
 
     // update everything 
     _paddle->update(dt);
