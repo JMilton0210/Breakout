@@ -122,6 +122,16 @@ void Ball::setFireBall(float duration)
     _timeWithPowerupEffect = 0.f;    
 }
 
+void Ball::testBounce()
+{
+    _direction.x *= -1;
+}
+
+sf::Vector2f Ball::GetPosition()
+{
+    return _sprite.getPosition();
+}
+
 void Ball::IncreaseSpeed()
 {
     _velocityCumulative += (_velocityInitial * 0.1f );

@@ -14,6 +14,8 @@ public:
     void render();
     void setVelocity(float coeff, float duration);
     void setFireBall(float duration);
+    void testBounce();
+    sf::Vector2f GetPosition();
 
 private:
     void IncreaseSpeed();
