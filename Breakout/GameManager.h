@@ -14,6 +14,7 @@
 class GameManager {
 public:
     GameManager(sf::RenderWindow* window);
+    void reset();
     void initialize();
     void update(float dt);
     void loseLife();
