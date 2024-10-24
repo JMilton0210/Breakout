@@ -1,12 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include "GameManager.h"
 #include <iostream>
+#include "GameStateManager.h"
 
 int main()
 {
 
     sf::RenderWindow window(sf::VideoMode(1000, 800), "Breakout");
     GameManager gameManager(&window);
+    GameStateManager gameState = GameStateManager(&gameManager);
     gameManager.initialize();
 
     sf::Clock clock;
@@ -23,7 +25,8 @@ int main()
 
         deltaTime = clock.restart().asSeconds();
 
-        gameManager.update(deltaTime);
+        gameState.update(deltaTime);
+        //gameManager.update(deltaTime);
 
         window.clear();
         gameManager.render();
