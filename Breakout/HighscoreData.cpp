@@ -1,29 +1,10 @@
 #include "HighscoreData.h"
 
-
-
-bool HighscoreData::is_lower(const Score& a, const Score& b)
-{
-    return a.time < b.time;
-}
-
 std::string HighscoreData::GetStringFromScore(Score arg_score)
 {
     return arg_score.name + " : " + std::to_string(arg_score.time);
 
 }
-
-void HighscoreData::sort(std::vector<Score>& arr)
-{
-    if(arr.size() == 6){
-    if (arr[6].time < arr[5].time) {
-        Score temp = arr[5];
-        arr[5] = arr[6];
-        arr[6] = temp;
-    }
-    }
-}
-
 
 void HighscoreData::Initialise()
 {
@@ -61,7 +42,7 @@ void HighscoreData::AddScore(std::string arg_name, float arg_time)
     //Limit Max number of scores to 5
     if (_validscores < 5) _validscores++;
 
-    //Sort the list
+    //Sort the list based on shortest time
     std::sort(temp.begin(), temp.end(), [](const Score& a, const Score& b) {
         return a.time < b.time;
         });

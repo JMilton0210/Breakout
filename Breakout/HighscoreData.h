@@ -21,9 +21,7 @@ class HighscoreData
 	int _numofscores = 5;
 	Score _highscores[5];
 	
-	bool is_lower(const Score& a, const Score& b);
 	std::string GetStringFromScore(Score arg_score);
-	void sort(std::vector<Score>& arr);
 
 public:
 	
