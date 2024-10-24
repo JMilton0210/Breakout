@@ -9,11 +9,12 @@ class HighscoreData
 		std::string name = "";
 		int bounces = 0;
 		float time = 10000;
+		int score = 0;
 
 		Score() {};
-		Score(std::string _name, int _bounces, float _time)
+		Score(std::string _name, int _bounces, float _time, float _score)
 		{
-			name = _name; bounces = _bounces; time = _time;
+			name = _name; bounces = _bounces; time = _time; score = _score;
 		}
 	};
 
@@ -29,5 +30,6 @@ public:
 	std::string ScoreString(int i);
 	int GetValidScores();
 	void AddScore(std::string arg_name, float arg_time);
+	static int GetScoreFromTime(float _time);
 };
 

@@ -2,7 +2,7 @@
 
 std::string HighscoreData::GetStringFromScore(Score arg_score)
 {
-    return arg_score.name + " : " + std::to_string(arg_score.time);
+    return arg_score.name + " : " + std::to_string(arg_score.score);
 
 }
 
@@ -26,7 +26,7 @@ int HighscoreData::GetValidScores()
 
 void HighscoreData::AddScore(std::string arg_name, float arg_time)
 {
-    Score newScore = Score(arg_name, 0, arg_time);
+    Score newScore = Score(arg_name, 0, arg_time, GetScoreFromTime(arg_time));
 
     //Create Temporary copy of the highscore list
     std::vector<Score> temp(6);
@@ -44,7 +44,7 @@ void HighscoreData::AddScore(std::string arg_name, float arg_time)
 
     //Sort the list based on shortest time
     std::sort(temp.begin(), temp.end(), [](const Score& a, const Score& b) {
-        return a.time < b.time;
+        return a.score > b.score;
         });
 
     // Set Highscore List to Sorted List and remove the last element if oversized
@@ -53,4 +53,9 @@ void HighscoreData::AddScore(std::string arg_name, float arg_time)
     }
 
 
+}
+
+int HighscoreData::GetScoreFromTime(float _time)
+{
+    return 50 * 1000 / _time;
 }
