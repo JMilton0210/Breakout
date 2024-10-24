@@ -15,12 +15,21 @@ GameManager::GameManager(sf::RenderWindow* window)
     _masterText.setFillColor(sf::Color::Yellow);
 }
 
+void GameManager::reset()
+{
+    _powerupInEffect = { none, 0 };
+    _timeLastPowerupSpawned = 0;
+    _lives = 3;
+    initialize();
+    
+}
+
 void GameManager::initialize()
 {
     _paddle = new Paddle(_window);
     _brickManager = new BrickManager(_window, this);
     _messagingSystem = new MessagingSystem(_window);
-    _ball = new Ball(_window, 400.0f, this); 
+    _ball = new Ball(_window, 400.0f, this);
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
 
@@ -37,7 +46,11 @@ void GameManager::update(float dt)
 
     if (_lives <= 0)
     {
-        _masterText.setString("Game over.");
+        _masterText.setString("Game over.\nSpace to Restart");
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            _masterText.setString(""); 
+            reset();
+        }
         return;
     }
     if (_levelComplete)
