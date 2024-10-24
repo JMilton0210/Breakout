@@ -7,16 +7,8 @@
 UI::UI(sf::RenderWindow* window, int lives, GameManager* gameManager) 
 	: _window(window), _gameManager(gameManager)
 {
-	for (int i = lives; i > 0; --i)
-	{
-		sf::CircleShape newLife;
-		newLife.setFillColor(sf::Color::Red);	
-		newLife.setOutlineColor(sf::Color::Cyan);
-		newLife.setOutlineThickness(4.0f);
-		newLife.setRadius(LIFE_RADIUS);
-		newLife.setPosition((LIFE_RADIUS*2 + LIFE_PADDING) * i, LIFE_PADDING);
-		_lives.push_back(newLife);
-	}
+	reset_lives(lives);
+
 	_powerupText.setCharacterSize(30);
 	_powerupText.setPosition(850, 700);
 	_powerupText.setFillColor(sf::Color::Cyan);
@@ -42,6 +34,11 @@ UI::UI(sf::RenderWindow* window, int lives, GameManager* gameManager)
 		_highscoreText[i].setFillColor(sf::Color::White);
 		_highscoreText[i].setFont(_font);
 		_highscoreText[i].setString("lick");
+		
+		_highscoreGrid[i].setPosition(800, 50 + (i * 40));
+		_highscoreGrid[i].setSize(sf::Vector2f(180, 40));
+		if (i % 2 == 0) _highscoreGrid[i].setFillColor(sf::Color(200, 200, 250, 150));
+		else _highscoreGrid[i].setFillColor(sf::Color(200, 250, 200, 150));
 	}
 	_highscoreData.Initialise();
 
@@ -99,9 +96,28 @@ void UI::updatePowerup(std::pair<POWERUPS, float> powerup)
 
 }
 
+void UI::reset_lives(int lives)
+{
+	for (int i = lives; i > 0; --i)
+	{
+		sf::CircleShape newLife;
+		newLife.setFillColor(sf::Color::Red);
+		newLife.setOutlineColor(sf::Color::Cyan);
+		newLife.setOutlineThickness(4.0f);
+		newLife.setRadius(LIFE_RADIUS);
+		newLife.setPosition((LIFE_RADIUS * 2 + LIFE_PADDING) * i, LIFE_PADDING);
+		_lives.push_back(newLife);
+	}
+}
+
 void UI::lifeLost(int lives)
 {
 	_lives[_lives.size() - 1 - lives].setFillColor(sf::Color::Transparent);
+}
+
+void UI::addscore(std::string arg_string, float arg_time)
+{
+	_highscoreData.AddScore(arg_string, arg_time);
 }
 
 void UI::render()
@@ -115,8 +131,9 @@ void UI::render()
 	{
 		_window->draw(life);
 	}
-	for (int i = 0; i < _numOfScores; i++) {
+	for (int i = 0; i < _highscoreData.GetValidScores(); i++) {
 		_highscoreText[i].setString(_highscoreData.ScoreString(i));
+		_window->draw(_highscoreGrid[i]);
 		_window->draw(_highscoreText[i]);
 	}
 }

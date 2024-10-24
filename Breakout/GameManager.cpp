@@ -20,8 +20,16 @@ void GameManager::reset()
     _powerupInEffect = { none, 0 };
     _timeLastPowerupSpawned = 0;
     _lives = 3;
-    initialize();
-    
+    _levelComplete = false;
+    _paddle = new Paddle(_window);
+    _brickManager = new BrickManager(_window, this);
+    _messagingSystem = new MessagingSystem(_window);
+    _ball = new Ball(_window, 400.0f, this);
+    _powerupManager = new PowerupManager(_window, _paddle, _ball);
+    // Create bricks
+    _time = 0;
+    _ui->reset_lives(3);
+    _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
 }
 
 void GameManager::initialize()
@@ -56,6 +64,11 @@ void GameManager::update(float dt)
     if (_levelComplete)
     {
         _masterText.setString("Level completed.");
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            _masterText.setString("");
+            _ui->addscore("name", _time);
+            reset();
+        }
         return;
     }
     // pause and pause handling
@@ -89,6 +102,10 @@ void GameManager::update(float dt)
         _powerupManager->spawnPowerup();
         _timeLastPowerupSpawned = _time;
     }
+
+    // Testing tool for finishing level
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))  _levelComplete = true;
+    
 
     // Keyboard Paddle Movement
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) _paddle->moveRight(dt);

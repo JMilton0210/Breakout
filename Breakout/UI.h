@@ -16,7 +16,9 @@ public:
 	~UI();
 
 	void updatePowerup(std::pair<POWERUPS, float>);
+	void reset_lives(int lives);
 	void lifeLost(int lives);
+	void addscore(std::string arg_string, float arg_time);
 	void render();
 
 private:
@@ -37,6 +39,7 @@ private:
 
 	int _numOfScores = 5;
 	sf::Text _highscoreText[5];
+	sf::RectangleShape _highscoreGrid[5];
 	HighscoreData _highscoreData;
 	
 };
