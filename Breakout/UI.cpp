@@ -35,6 +35,16 @@ UI::UI(sf::RenderWindow* window, int lives, GameManager* gameManager)
 	_barBack.setOutlineColor(sf::Color::Cyan);
 	_barBack.setOutlineThickness(3);
 
+	//Highscore Text
+	for (int i = 0; i < _numOfScores; i++) {
+		_highscoreText[i].setCharacterSize(30);
+		_highscoreText[i].setPosition(800, 50 + (i*40));
+		_highscoreText[i].setFillColor(sf::Color::White);
+		_highscoreText[i].setFont(_font);
+		_highscoreText[i].setString("lick");
+	}
+	_highscoreData.Initialise();
+
 }
 
 UI::~UI()
@@ -104,5 +114,9 @@ void UI::render()
 	for (sf::CircleShape life : _lives)
 	{
 		_window->draw(life);
+	}
+	for (int i = 0; i < _numOfScores; i++) {
+		_highscoreText[i].setString(_highscoreData.ScoreString(i));
+		_window->draw(_highscoreText[i]);
 	}
 }

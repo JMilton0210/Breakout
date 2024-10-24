@@ -5,6 +5,8 @@
 #include "CONSTANTS.h"
 #include "PowerupManager.h"
 
+#include "HighscoreData.h"
+
 class GameManager;
 
 class UI
@@ -32,6 +34,10 @@ private:
 	bool _barActive = false;
 	sf::RectangleShape _bar;
 	sf::RectangleShape _barBack;
+
+	int _numOfScores = 5;
+	sf::Text _highscoreText[5];
+	HighscoreData _highscoreData;
 	
 };
 
