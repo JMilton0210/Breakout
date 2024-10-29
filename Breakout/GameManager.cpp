@@ -94,7 +94,7 @@ void GameManager::update(float dt)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) _paddle->moveRight(dt);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) _paddle->moveLeft(dt);
     // Mouse Paddle Movement
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) _paddle->moveTo(dt, _window->mapPixelToCoords(sf::Mouse::getPosition()).x);
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) _paddle->moveTo(dt, MousePositionInWorld().x);
             
 
     // update everything 
@@ -129,6 +129,14 @@ void GameManager::levelComplete()
 
 sf::RenderWindow* GameManager::getWindow() const { return _window; }
 UI* GameManager::getUI() const { return _ui; }
+sf::Vector2f GameManager::MousePositionInWorld()
+{
+    sf::Vector2i _in_window = sf::Mouse::getPosition();
+    sf::Vector2f _in_world = _window->mapPixelToCoords(_in_window);
+    _in_world.x -= 468;
+    _in_world.y -= 170;
+    return _in_world;
+}
 Paddle* GameManager::getPaddle() const { return _paddle; }
 BrickManager* GameManager::getBrickManager() const { return _brickManager; }
 PowerupManager* GameManager::getPowerupManager() const { return _powerupManager; }

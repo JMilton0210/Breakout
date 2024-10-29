@@ -21,6 +21,7 @@ public:
     void levelComplete();
     void powerupEffect(POWERUPS pu, float t);
 
+    sf::Vector2f MousePositionInWorld();
     Paddle* getPaddle() const;
     BrickManager* getBrickManager() const;
     PowerupManager* getPowerupManager() const;
