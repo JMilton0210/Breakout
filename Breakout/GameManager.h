@@ -10,7 +10,8 @@
 #include "BallTrail.h"
 
 #include "DefaultParticle.h"
-#include "MovingParticle.h"
+#include "ExplosionParticle.h"
+#include "ParticleCluster.h"
 
 
 class GameManager {
@@ -53,7 +54,8 @@ private:
     UI* _ui;
 
     BallTrail _ballTrail;
-    MovingParticle _particle_test;
+    ExplosionParticle _particle_test;
+    ParticleCluster<ExplosionParticle> _exp;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn

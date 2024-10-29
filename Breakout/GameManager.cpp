@@ -99,8 +99,10 @@ void GameManager::update(float dt)
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) _paddle->moveTo(dt, MousePositionInWorld().x);
             
     // Spawn Particle On Right Mouse Button
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) _particle_test.Create(5, 5, MousePositionInWorld());
-    _particle_test.Update(dt);
+    //if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) _particle_test.Create(5, 5, MousePositionInWorld());
+    //_particle_test.Update(dt);
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) _exp.Create(10, 5, 5, MousePositionInWorld());
+    _exp.Update(dt);
 
     //BallTrail
     _ballTrail.Update(dt, _ball->GetPosition());
@@ -130,7 +132,8 @@ void GameManager::render()
     _powerupManager->render();
     _window->draw(_masterText);
     _ui->render();
-    _particle_test.Render(_window);
+    //_particle_test.Render(_window);
+    _exp.Render(_window);
 }
 
 void GameManager::levelComplete()

@@ -2,7 +2,7 @@
 #include "Particle.h"
 #include "MyMath.cpp"
 
-class MovingParticle : public Particle
+class ExplosionParticle : public Particle
 {
 	
 	sf::Vector2f _direction;
