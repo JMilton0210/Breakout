@@ -142,12 +142,15 @@
     <ClCompile Include="BallTrail.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="BrickManager.cpp" />
+    <ClCompile Include="DefaultParticle.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/SFML/include</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="MessagingSystem.cpp" />
+    <ClCompile Include="MovingParticle.cpp" />
+    <ClCompile Include="MyMath.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PowerupBase.cpp" />
@@ -166,9 +169,11 @@
     <ClInclude Include="Brick.h" />
     <ClInclude Include="BrickManager.h" />
     <ClInclude Include="CONSTANTS.h" />
+    <ClInclude Include="DefaultParticle.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="MessagingSystem.h" />
+    <ClInclude Include="MovingParticle.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="PowerupBase.h" />

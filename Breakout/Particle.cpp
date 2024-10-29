@@ -12,10 +12,12 @@ void Particle::Create(float _lifetime_in_seconds, float _size, sf::Vector2f _pos
 	_time_limit = _lifetime_in_seconds;
 	_sprite.setRadius(_size);
 	_sprite.setPosition(_position);
+	CreateParticle();
 }
 void Particle::Destroy()
 {
 	_active = false;
+	DestroyParticle();
 }
 
 void Particle::Update(float dt)
@@ -25,6 +27,7 @@ void Particle::Update(float dt)
 		if (_time_elapsed >= _time_limit) {
 			Destroy();
 		}
+		UpdateParticle(dt);
 	}
 }
 

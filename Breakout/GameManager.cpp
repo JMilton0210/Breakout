@@ -35,6 +35,8 @@ void GameManager::initialize()
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
+
+    srand(time(0));
 }
 
 void GameManager::update(float dt)
@@ -96,8 +98,8 @@ void GameManager::update(float dt)
     // Mouse Paddle Movement
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) _paddle->moveTo(dt, MousePositionInWorld().x);
             
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) _particle_test.Create(2, 1, MousePositionInWorld());
-        
+    // Spawn Particle On Right Mouse Button
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) _particle_test.Create(5, 5, MousePositionInWorld());
     _particle_test.Update(dt);
 
     //BallTrail
