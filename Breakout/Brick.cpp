@@ -29,3 +29,8 @@ bool Brick::GetDestroyed()
 {
     return _isDestroyed;
 }
+
+void Brick::SetDestroyed(bool _d)
+{
+    _isDestroyed = _d;
+}

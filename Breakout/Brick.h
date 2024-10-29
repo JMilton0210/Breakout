@@ -9,6 +9,7 @@ public:
     
     sf::FloatRect getBounds() const;
     bool GetDestroyed();
+    void SetDestroyed(bool _d);
 
 private:
     sf::RectangleShape _shape;
