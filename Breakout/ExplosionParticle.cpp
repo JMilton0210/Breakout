@@ -3,13 +3,14 @@
 void ExplosionParticle::CreateParticle()
 {
 	_direction = MyMath::RandomUnitVector();
-	_direction.x *= 2;
-	_speed = 300;
-	_acceleration = 4;
+	int _speed = rand()%200  ;
+	_direction.x *= _speed;
+	_direction.y *= _speed;
+	_acceleration = 500;
 }
 void ExplosionParticle::UpdateParticle(float dt)
 {
-	_sprite.setPosition(_sprite.getPosition() + (_speed * _direction * dt));
+	_sprite.setPosition(_sprite.getPosition() + (_direction * dt));
 	_direction.y += (_acceleration * dt);
 }
 

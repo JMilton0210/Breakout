@@ -6,7 +6,6 @@ class ExplosionParticle : public Particle
 {
 	
 	sf::Vector2f _direction;
-	float _speed;
 	float _acceleration;
 
 	void CreateParticle() override; 
