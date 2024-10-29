@@ -130,7 +130,6 @@ void GameManager::render()
     _powerupManager->render();
     _window->draw(_masterText);
     _ui->render();
-    //_particle_test.Render(_window);
     _exp.Render(_window);
 }
 

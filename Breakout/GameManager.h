@@ -54,7 +54,6 @@ private:
     UI* _ui;
 
     BallTrail _ballTrail;
-    ExplosionParticle _particle_test;
     ParticleCluster<ExplosionParticle> _exp;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
