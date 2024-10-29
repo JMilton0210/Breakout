@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "ParticleCluster.h"
+#include "ExplosionParticle.h"
 
 
 class GameManager;  // forward declaration
@@ -30,6 +32,10 @@ private:
     float _timeWithPowerupEffect;
 
     GameManager* _gameManager;  // Reference to the GameManager
+
+    float _trail_timer = 0.0f;
+    float _trail_limit = 0.1f;
+    std::vector<ParticleCluster<ExplosionParticle>> cluster_array;
 
 
     static constexpr float RADIUS = 10.0f;      

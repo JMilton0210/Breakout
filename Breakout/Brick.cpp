@@ -18,6 +18,7 @@ void Brick::render(sf::RenderWindow& window)
     if (!_isDestroyed) {
         window.draw(_shape);
     }
+    explosion.Render(&window);
 }
 
 sf::FloatRect Brick::getBounds() const
@@ -28,4 +29,22 @@ sf::FloatRect Brick::getBounds() const
 bool Brick::GetDestroyed()
 {
     return _isDestroyed;
+}
+
+void Brick::SetDestroyed(bool arg_destroyed)
+{
+    _isDestroyed = arg_destroyed;
+}
+
+void Brick::StartExplosion()
+{
+    sf::Vector2f _pos = _shape.getPosition();
+    _pos.x += _shape.getSize().x / 2;
+    _pos.y += _shape.getSize().y / 2;
+    explosion.Create(200, 2, 1, _pos);
+}
+
+void Brick::UpdateExplosion(float dt)
+{
+    explosion.Update(dt);
 }

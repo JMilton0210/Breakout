@@ -9,11 +9,23 @@ class ParticleCluster
 
 public: 
 
+	bool IsActive();
+
 	void Create( int _particle_count, float _lifetime_in_seconds, float _size, sf::Vector2f _position);
 	void Update(float dt);
 	void Render(sf::RenderWindow* _window);
 
 };
+
+template<typename ParticleType>
+inline bool ParticleCluster<ParticleType>::IsActive()
+{
+	for (int i = 0; i < particles.size(); i++) {
+		if (particles[i].IsActive())
+			return true;
+	}
+	return false;
+}
 
 template<typename ParticleType>
 inline void ParticleCluster<ParticleType>::Create(int _particle_count, float _lifetime_in_seconds, float _size, sf::Vector2f _position)

@@ -34,6 +34,7 @@ void BrickManager::update(float dt)
     if (_moveFlag) _speedX *= -1;
     for (int i = 0; i < _bricks.size(); i++) {
         _bricks[i].move(sf::Vector2f(_speedX, 0) * dt);
+        _bricks[i].UpdateExplosion(dt);
         if(_moveFlag) _bricks[i].move(sf::Vector2f(0, _distY));
     }
     _moveFlag = false;
@@ -50,23 +51,25 @@ int BrickManager::checkCollision(sf::CircleShape& ball, sf::Vector2f& direction)
 {
     int collisionResponse = 0;  // set to 1 for horizontal collision and 2 for vertical.
     for (auto& brick : _bricks) {
-        if (!brick.getBounds().intersects(ball.getGlobalBounds())) continue;    // no collision, skip.
+        if (!brick.GetDestroyed()) {
+            if (!brick.getBounds().intersects(ball.getGlobalBounds())) continue;    // no collision, skip.
 
-        sf::Vector2f ballPosition = ball.getPosition();
-        float ballY = ballPosition.y + 0.5f * ball.getGlobalBounds().height;
-        sf::FloatRect brickBounds = brick.getBounds();
+            sf::Vector2f ballPosition = ball.getPosition();
+            float ballY = ballPosition.y + 0.5f * ball.getGlobalBounds().height;
+            sf::FloatRect brickBounds = brick.getBounds();
 
-        // default vertical bounce (collision is top/bottom)
-        collisionResponse = 2;
-        if (ballY > brickBounds.top && ballY < brickBounds.top + brickBounds.height)
-            // unless it's horizontal (collision from side)
-            collisionResponse = 1;
+            // default vertical bounce (collision is top/bottom)
+            collisionResponse = 2;
+            if (ballY > brickBounds.top && ballY < brickBounds.top + brickBounds.height)
+                // unless it's horizontal (collision from side)
+                collisionResponse = 1;
 
-        // Mark the brick as destroyed (for simplicity, let's just remove it from rendering)
-        // In a complete implementation, you would set an _isDestroyed flag or remove it from the vector
-        brick = _bricks.back();
-        _bricks.pop_back();
-        break;
+            // Mark the brick as destroyed (for simplicity, let's just remove it from rendering)
+            // In a complete implementation, you would set an _isDestroyed flag or remove it from the vector
+            brick.StartExplosion();
+            brick.SetDestroyed(true);
+            break;
+        }
     }
     if (_bricks.size() == 0)
     {

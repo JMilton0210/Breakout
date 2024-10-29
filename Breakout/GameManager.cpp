@@ -123,7 +123,7 @@ void GameManager::loseLife()
 
 void GameManager::render()
 {
-    _ballTrail.Render(_window);
+    //_ballTrail.Render(_window);
     _paddle->render();
     _ball->render();
     _brickManager->render();

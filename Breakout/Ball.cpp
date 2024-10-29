@@ -18,6 +18,22 @@ Ball::~Ball()
 
 void Ball::update(float dt)
 {
+    _trail_timer += dt;
+    if (_trail_timer >= _trail_limit) {
+        _trail_timer -= _trail_limit;
+        ParticleCluster<ExplosionParticle> cluster;
+        cluster.Create(1, 1, 1, _sprite.getPosition());
+        cluster_array.push_back(cluster);
+    }
+    for (int i = 0; i < cluster_array.size(); i++) {
+        cluster_array[i].Update(dt);
+        if (!cluster_array[i].IsActive())
+            cluster_array.erase(cluster_array.begin() + i);
+    }
+
+
+
+
     // check for powerup, tick down or correct
     if (_timeWithPowerupEffect > 0.f)
     {
@@ -103,6 +119,9 @@ void Ball::update(float dt)
 void Ball::render()
 {
     _window->draw(_sprite);
+    for (auto cluster : cluster_array) {
+        cluster.Render(_window);
+    }
 }
 
 void Ball::setVelocity(float coeff, float duration)
