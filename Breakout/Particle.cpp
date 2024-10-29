@@ -5,6 +5,11 @@ bool Particle::IsActive()
 	return _active;
 }
 
+float Particle::GetTime()
+{
+	return _time_elapsed / _time_limit;
+}
+
 void Particle::Create(float _lifetime_in_seconds, float _size, sf::Vector2f _position)
 {
 	_active = true;

@@ -16,6 +16,7 @@ public:
 	virtual void DestroyParticle() {};
 
 	bool IsActive();
+	float GetTime();
 
 	void Create(float _lifetime_in_seconds, float _size, sf::Vector2f _position);
 	void Destroy();

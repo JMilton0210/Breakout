@@ -98,10 +98,8 @@ void GameManager::update(float dt)
     // Mouse Paddle Movement
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) _paddle->moveTo(dt, MousePositionInWorld().x);
             
-    // Spawn Particle On Right Mouse Button
-    //if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) _particle_test.Create(5, 5, MousePositionInWorld());
-    //_particle_test.Update(dt);
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) _exp.Create(200, 5, 1, MousePositionInWorld());
+    // Spawn Particle Cluster On Right Mouse Button
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) _exp.Create(200, 2, 1.5, MousePositionInWorld());
     _exp.Update(dt);
 
     //BallTrail
