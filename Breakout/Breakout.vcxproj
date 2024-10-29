@@ -147,6 +147,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/SFML/include</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="MessagingSystem.cpp" />
+    <ClCompile Include="MyMath.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="PowerupBase.cpp" />
     <ClCompile Include="PowerupBigPaddle.cpp" />
