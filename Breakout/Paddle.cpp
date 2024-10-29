@@ -40,8 +40,7 @@ void Paddle::moveRight(float dt)
 void Paddle::moveTo(float dt, float desiredX)
 {
     // Offset Desired Position for sprite size
-    desiredX -= 550;   
-    _sprite.setPosition(sf::Vector2f(desiredX, _height));
+    _sprite.setPosition(sf::Vector2f(desiredX - (_sprite.getSize().x / 2), _height));
     
     // Alternate Control Scheme (Thats Feels Worse)
     //float position = _sprite.getPosition().x;

@@ -9,6 +9,7 @@
 #include "UI.h"
 #include "BallTrail.h"
 
+#include "Particle.h"
 
 
 class GameManager {
@@ -28,6 +29,7 @@ public:
     sf::RenderWindow* getWindow() const;
     UI* getUI() const;
 
+    sf::Vector2f MousePositionInWorld();
 
 private:
     bool _pause;
@@ -50,6 +52,7 @@ private:
     UI* _ui;
 
     BallTrail _ballTrail;
+    Particle _particle_test;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn
