@@ -96,10 +96,6 @@ void GameManager::update(float dt)
     // Mouse Paddle Movement
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) _paddle->moveTo(dt, _window->mapPixelToCoords(sf::Mouse::getPosition()).x);
             
-        
-    //BallTrail
-    _ballTrail.Update(dt, _ball->GetPosition());
-    
 
     // update everything 
     _paddle->update(dt);
@@ -118,7 +114,6 @@ void GameManager::loseLife()
 
 void GameManager::render()
 {
-    _ballTrail.Render(_window);
     _paddle->render();
     _ball->render();
     _brickManager->render();

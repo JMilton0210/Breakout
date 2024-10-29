@@ -10,7 +10,8 @@ Brick::Brick(float x, float y, float width, float height)
 
 void Brick::move(sf::Vector2f vec)
 {
-    _shape.setPosition(_shape.getPosition() + vec);
+    if(!_isDestroyed)
+        _shape.setPosition(_shape.getPosition() + vec);
 }
 
 void Brick::render(sf::RenderWindow& window)

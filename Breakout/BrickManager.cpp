@@ -25,18 +25,21 @@ void BrickManager::createBricks(int rows, int cols, float brickWidth, float bric
 
 void BrickManager::update(float dt)
 {
+    // BRICK MOVEMENT
     _moveTimer += dt;
     if (_moveTimer > _moveLimit) {
         _moveTimer -= _moveLimit;
         _moveFlag = true;
     }
-
     if (_moveFlag) _speedX *= -1;
     for (int i = 0; i < _bricks.size(); i++) {
+        if (_moveFlag) 
+            _bricks[i].move(sf::Vector2f(0, _distY)); 
         _bricks[i].move(sf::Vector2f(_speedX, 0) * dt);
-        if(_moveFlag) _bricks[i].move(sf::Vector2f(0, _distY));
     }
     _moveFlag = false;
+
+
 }
 
 void BrickManager::render()
