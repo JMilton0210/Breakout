@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "ParticleCluster.h"
+#include "ExplosionParticle.h"
 
 class Brick {
 public:
@@ -10,6 +12,11 @@ public:
     sf::FloatRect getBounds() const;
     bool GetDestroyed();
     void SetDestroyed(bool _d);
+
+
+    void StartExplosion();
+    void UpdateExplosion(float dt);
+    ParticleCluster<ExplosionParticle> explosion;
 
 private:
     sf::RectangleShape _shape;

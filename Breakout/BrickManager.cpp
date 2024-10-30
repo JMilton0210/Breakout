@@ -33,6 +33,9 @@ void BrickManager::update(float dt)
     }
     if (_moveFlag) _speedX *= -1;
     for (int i = 0; i < _bricks.size(); i++) {
+
+        _bricks[i].UpdateExplosion(dt);
+
         if (_moveFlag) 
             _bricks[i].move(sf::Vector2f(0, _distY)); 
         _bricks[i].move(sf::Vector2f(_speedX, 0) * dt);
@@ -69,6 +72,7 @@ int BrickManager::checkCollision(sf::CircleShape& ball, sf::Vector2f& direction)
             // Mark the brick as destroyed (for simplicity, let's just remove it from rendering)
             // In a complete implementation, you would set an _isDestroyed flag or remove it from the vector
             brick.SetDestroyed(true);
+            brick.StartExplosion();
             break;
         }
     }

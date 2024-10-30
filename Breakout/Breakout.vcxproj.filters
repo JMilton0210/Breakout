@@ -16,6 +16,9 @@
     <Filter Include="Powerups">
       <UniqueIdentifier>{f3758f5c-ad80-41b1-a2fb-fb910363ec2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ParticleSystem">
+      <UniqueIdentifier>{f2e1c738-0a7a-4614-9f1b-3f56c34cccfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,14 +66,23 @@
     <ClCompile Include="PowerupFireBall.cpp">
       <Filter>Powerups</Filter>
     </ClCompile>
-    <ClCompile Include="BallTrail.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TrailObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Header Files\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosionParticle.cpp">
+      <Filter>Header Files\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleCluster.cpp">
+      <Filter>Header Files\ParticleSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,14 +131,20 @@
     <ClInclude Include="PowerupFireBall.h">
       <Filter>Powerups</Filter>
     </ClInclude>
-    <ClInclude Include="BallTrail.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TrailObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameStateManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Header Files\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosionParticle.h">
+      <Filter>Header Files\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleCluster.h">
+      <Filter>Header Files\ParticleSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
